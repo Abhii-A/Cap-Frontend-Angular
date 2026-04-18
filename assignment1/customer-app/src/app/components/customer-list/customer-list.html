@@ -1,0 +1,21 @@
+<div class="container">
+
+  <h2>Customer List</h2>
+
+  <input type="text" [(ngModel)]="searchText" (input)="onSearchChange()" placeholder="Search by name" />
+
+  <div *ngIf="filteredCustomers.length == 0">
+    <p>No customer found</p>
+  </div>
+
+  <div *ngFor="let c of pagedCustomers">
+    <app-customer-details [customer]="c"></app-customer-details>
+  </div>
+
+  <div class="pagination">
+    <button (click)="goToPrevious()" [disabled]="currentPage == 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+    <button (click)="goToNext()" [disabled]="currentPage == totalPages()">Next</button>
+  </div>
+
+</div>
